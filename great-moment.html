@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Great Moment</title>
+    <script src="./moment.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+      body {
+        overflow: hidden;
+        background-color: rgb(173, 168, 168);
+        background-image: url(./bg.jpeg);
+        background-size: auto;
+        color: rgb(245, 134, 7);
+        padding-top: 4em;
+      }
+      h1 {
+        margin-bottom: 6em;
+      }
+      p {
+        margin-top: 3em;
+        font-size: 24px;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Great Moment</h1>
+    <p>Hello world! I'm little peanut.</p>
+    <p id="hundred"></p>
+    <p id="days">Today is the 100th day of my birth.</p>
+  </body>
+  <script>
+    window.onload = () => {
+      const format = "YYYY-MM-DD";
+      const birthdayStr = "2021-10-08";
+      let birthday = moment(birthdayStr);
+      let hundredDate = birthday.add(99, "days").format(format);
+      let hundred = document.getElementById("hundred");
+      hundred.innerHTML = `Hundred Days: ${hundredDate}`;
+
+      let now = moment(Date.now()).format(format);
+      let duration = new Date(now).getTime() - new Date(birthdayStr).getTime();
+      let dayCount = moment.duration(duration).asDays() + 1;
+      let days = document.getElementById("days");
+      days.innerHTML = `Today is the ${dayCount}th day of my birth.`;
+    };
+  </script>
+</html>
