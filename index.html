@@ -43,7 +43,7 @@
       let birthday = moment(birthdayStr);
       let hundredDate = birthday.add(99, "days").format(format);
       let hundred = document.getElementById("hundred");
-      hundred.innerHTML = `Hundred Days: ${hundredDate}`;
+      hundred.innerHTML = `The Hundred Day: ${hundredDate}`;
 
       let now = moment(Date.now()).format(format);
       let duration = new Date(now).getTime() - new Date(birthdayStr).getTime();
