@@ -34,7 +34,7 @@
     <h1>Great Moment</h1>
     <p>Hello world! I'm little peanut.</p>
     <p id="hundred"></p>
-    <p id="days">Today is the 100th day of my birth.</p>
+    <p id="days"></p>
   </body>
   <script>
     window.onload = () => {
@@ -49,7 +49,7 @@
       let duration = new Date(now).getTime() - new Date(birthdayStr).getTime();
       let dayCount = moment.duration(duration).asDays() + 1;
       let days = document.getElementById("days");
-      days.innerHTML = `Today is the ${dayCount}th day of my birth.`;
+      days.innerHTML = `Today is the ${dayCount}th day of my life.`;
     };
   </script>
 </html>
