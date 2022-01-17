@@ -37,18 +37,13 @@
     <h1>Great Moment</h1>
     <img src="./peanut.png"></img>
     <p>Hello world! I'm little peanut.</p>
-    <p id="hundred"></p>
+    <p>My birthday is 2021-01-08.</p>
     <p id="days"></p>
   </body>
   <script>
     window.onload = () => {
       const format = "YYYY-MM-DD";
       const birthdayStr = "2021-10-08";
-      let birthday = moment(birthdayStr);
-      let hundredDate = birthday.add(99, "days").format(format);
-      let hundred = document.getElementById("hundred");
-      hundred.innerHTML = `The Hundred Day: ${hundredDate}`;
-
       let now = moment(Date.now()).format(format);
       let duration = new Date(now).getTime() - new Date(birthdayStr).getTime();
       let dayCount = moment.duration(duration).asDays() + 1;
