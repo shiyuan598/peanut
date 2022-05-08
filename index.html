@@ -36,21 +36,72 @@
   </head>
   <body>
     <h1>Great Moment</h1>
-    <p id="greet">Happy mother's Day!</p>
+    <p id="greeting"></p>
     <img src="./peanut.png"></img>
     <p>Hello world! I'm little peanut.</p>
     <p>My birthday is 2021-10-08.</p>
     <p id="days"></p>
   </body>
   <script>
+    const format = "YYYY-MM-DD";
+    let now = moment(Date.now()).format(format);
     window.onload = () => {
-      const format = "YYYY-MM-DD";
       const birthdayStr = "2021-10-08";
-      let now = moment(Date.now()).format(format);
       let duration = new Date(now).getTime() - new Date(birthdayStr).getTime();
       let dayCount = moment.duration(duration).asDays() + 1;
       let days = document.getElementById("days");
       days.innerHTML = `Today is the ${dayCount}th day of my life.`;
+
+      let greeting = document.getElementById("greeting");
+      greeting.innerHTML = getFathersDayGreeting() + getMothersDayGreeting() + greetingBirthday(6, 2, "Dad") + greetingBirthday(2, 23, "mom") + greetingBirthday(10, 8);
     };
+
+    function getGreeting(month, weekCount) {
+      let date = moment();
+      date = moment().set({
+        month: month - 1,
+        date: 1
+      });
+      let target = null;
+      if (date.weekday() === 0) {
+        target = date.weekday(7 * (weekCount - 1));
+      } else {
+        target = date.weekday(7* weekCount);
+      }
+      return target.format(format) === now;
+    }
+
+    function getFathersDayGreeting() {
+      let greeting = "";
+      if (getGreeting(6, 3)) {
+        greeting = "Happy father's Day!"
+      };
+      return greeting; 
+    }
+    function getMothersDayGreeting() {
+      let greeting = "";
+      if (getGreeting(5, 2)) {
+        greeting = "Happy mother's Day!"
+      };
+      return greeting; 
+    }
+
+    function greetingBirthday(month, day, name) {
+      let greeting = "";
+      let date = moment();
+      date = moment().set({
+        month: month - 1,
+        date: day
+      });
+      if (date.format(format) === now) {
+        if (name) {
+          greeting = `Happy birthday to ${name}!`;
+        }
+        else {
+          greeting = "Happy birthday!"
+        }
+      }
+      return greeting;
+    }
   </script>
 </html>
