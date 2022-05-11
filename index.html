@@ -53,7 +53,12 @@
       days.innerHTML = `Today is the ${dayCount}th day of my life.`;
 
       let greeting = document.getElementById("greeting");
-      greeting.innerHTML = getFathersDayGreeting() + getMothersDayGreeting() + greetingBirthday(6, 2, "Dad") + greetingBirthday(2, 23, "mom") + greetingBirthday(10, 8);
+      greeting.innerHTML = getFathersDayGreeting() + 
+        getMothersDayGreeting() + 
+        birthdayGreeting(6, 2, "Dad") + 
+        birthdayGreeting(2, 23, "mom") + 
+        birthdayGreeting(10, 8) +
+        childrenDayGreeting(6, 1);
     };
 
     function getGreeting(month, weekCount) {
@@ -86,7 +91,7 @@
       return greeting; 
     }
 
-    function greetingBirthday(month, day, name) {
+    function birthdayGreeting(month, day, name) {
       let greeting = "";
       let date = moment();
       date = moment().set({
@@ -102,6 +107,19 @@
         }
       }
       return greeting;
+    }
+
+    function childrenDayGreeting(month=6, day=1) {
+      let greeting = "";
+      let date = moment();
+      date = moment().set({
+        month: month - 1,
+        date: day
+      });
+      if (date.format(format) === now) {
+        greeting = "Happy children's Day!"
+      }
+      return greeting; 
     }
   </script>
 </html>
